@@ -54,6 +54,14 @@ class ToDoTableViewController: UITableViewController {
         return cell
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender:Any?){
+        if let addToDoViewController = segue.destination as?
+            AddToDoViewController{
+            addToDoViewController.ToDoTableViewController = self
+        }
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.
