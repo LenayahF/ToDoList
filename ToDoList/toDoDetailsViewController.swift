@@ -1,86 +1,48 @@
 //
-//  ToDoTableViewController.swift
+//  toDoDetailsViewController.swift
 //  ToDoList
 //
-//  Created by 11k on 4/22/24.
+//  Created by 11k on 4/25/24.
 //
 
 import UIKit
 
-class ToDoTableViewController: UITableViewController {
-    
-    var toDos:[ToDo] = []
-
+class toDoDetailsViewController: UIViewController {
+var toDo = ToDo() 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let toDo1 = ToDo()
-        toDo1.name = "Write chapter one of iOS 14 book"
-        toDo1.priority = 0
-        let toDo2 = ToDo()
-        toDo2.name = "Edit iOS 14 book"
-        toDo2.priority = 1
-        
-        toDos.append(toDo1)
-        toDos.append(toDo2)
-        
-      
-        
-        
+        if toDo.priority == 1{
+            toDoLabel.text = "❗️" + toDo.name
+        }
+        else if toDo.priority == 2{
+            toDoLabel.text = "!!" + toDo.name
+        }
+        else{
+            toDoLabel.text = toDo.name
+        }
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
 
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
     
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return toDos.count
+    @IBAction func doneTapped(_ sender: Any) {
     }
-
-    
-    
-    
+    @IBOutlet weak var toDoLabel: UILabel!
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let selectedToDo = toDos[indexPath.row]
-        
-        if selectedToDo.priority == 1{
-            cell.textLabel?.text = "!" + selectedToDo.name
-        }
-        else if selectedToDo.priority == 2{
-            cell.textLabel?.text = "!!" + selectedToDo.name
-        }
-        else{
-            cell.textLabel?.text = selectedToDo.name
-        }
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
         return cell
     }
-    
-
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let selectedToDo = toDos[indexPath.row]
-        performSegue(withIdentifier: "moveToDetails", sender:selectedToDo)
-
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let addToDoViewController = segue.destination as?
-            AddToDoViewController{
-            addToDoViewController.ToDoTableViewController = self
-        }
-        if let detailsToDoViewController = segue.destination as?
-            toDoDetailsViewController{
-            if let selectedToDo = sender as? ToDo{
-                detailsToDoViewController.toDo = selectedToDo
-            }
-            
-        }
-        
-    }
+    */
 
     /*
     // Override to support conditional editing of the table view.
